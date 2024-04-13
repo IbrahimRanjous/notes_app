@@ -12,6 +12,7 @@ class NotesView extends StatelessWidget {
         backgroundColor: Colors.blue[400],
         onPressed: (){
           showModalBottomSheet(
+            useSafeArea: true,
             context: context, builder: (context){
               return const AddNoteBottomSheet();
             });
