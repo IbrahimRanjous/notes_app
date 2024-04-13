@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
