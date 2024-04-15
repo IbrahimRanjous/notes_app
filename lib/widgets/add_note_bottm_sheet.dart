@@ -41,15 +41,18 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 20,
           ),
+          
           CustomTextField(
             hint: 'title :',
             onSaved: (value) {
               title = value;
             },
           ),
+
           const SizedBox(
             height: 16,
           ),
+          
           CustomTextField(
             hint: 'content :',
             maxlines: 5,
@@ -60,7 +63,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
-           CustomButton(
+          
+          CustomButton(
             onTap: (){
               if(formKey.currentState!.validate())
               {
@@ -74,6 +78,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
               }
             },
            ),
+           
           const SizedBox(
             height: 16,
           ),
