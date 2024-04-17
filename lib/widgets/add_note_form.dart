@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes/models/note_model.dart';
 import 'package:notes/widgets/custom_button.dart';
 import 'package:notes/widgets/custom_text_filed.dart';
 
@@ -27,18 +30,15 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 20,
           ),
-          
           CustomTextField(
             hint: 'title :',
             onSaved: (value) {
               title = value;
             },
           ),
-
           const SizedBox(
             height: 16,
           ),
-          
           CustomTextField(
             hint: 'content :',
             maxlines: 5,
@@ -49,22 +49,27 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
-          
           CustomButton(
-            onTap: (){
-              if(formKey.currentState!.validate())
-              {
+            onTap: () {
+              if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-              }
-              else{
+                NoteModel noteModel = NoteModel(
+                    title: title!,
+                    subtitle: subTitle!,
+                    date: DateTime.now().toString(),
+                    /*
+                    .value : because I put int type in notemodel and I don't want to 
+                    create a object for color or even DateTime object for date variable
+                    so I used toString and value right here to turn around creating object in "hive"
+                    */
+                    color: Colors.blue.value);
+                BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+              } else {
                 autovalidateMode = AutovalidateMode.always;
-                setState(() {
-                  
-                });
+                setState(() {});
               }
             },
-           ),
-           
+          ),
           const SizedBox(
             height: 16,
           ),

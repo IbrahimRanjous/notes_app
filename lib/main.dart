@@ -10,9 +10,19 @@ import 'package:notes/views/notes_view.dart';
 void main() async {
   await Hive.initFlutter();
 
+  // to help me see the states in debugging
   Bloc.observer = SimpleBlocObserver();
-  await Hive.openBox(kNotesBox);
+
+  // Warning !! : registerAdapter should be before openBox  //
+
   Hive.registerAdapter(NoteModelAdapter());
+
+  /*
+   Waring !! : here I specified the box type "NoteModel" to solve 
+   the problem "the box ... is already open and of type Box<dynamic>"
+   and I should also specify in cubit folder that have the logic 
+  */
+  await Hive.openBox<NoteModel>(kNotesBox);
   runApp(const NotesApp());
 }
 
@@ -28,13 +38,13 @@ class NotesApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                brightness: Brightness.dark,
-                fontFamily: 'Poppins',
-              // scaffoldBackgroundColor: Colors.black,
-              ),
-              home: const NotesView(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: 'Poppins',
+          // scaffoldBackgroundColor: Colors.black,
+        ),
+        home: const NotesView(),
       ),
     );
   }
