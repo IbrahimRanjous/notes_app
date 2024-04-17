@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -61,7 +59,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                     formKey.currentState!.save();
                     var currentDate = DateTime.now();
                     var formattedCurrentDate =
-                        DateFormat('dd-mm-yyyy').format(currentDate);
+                        DateFormat.yMd().format(currentDate);
                     NoteModel noteModel = NoteModel(
                         title: title!,
                         subtitle: subTitle!,
