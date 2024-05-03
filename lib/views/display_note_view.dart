@@ -8,34 +8,52 @@ class DisplayNoteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          Container(
-            child: Text(
-              note.title,
-              style: TextStyle(
-                fontSize: 22,
+    return Scaffold(
+      backgroundColor: Color(note.color),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 80,
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  note.title,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
-          ),
-          const Divider(
-            height: 20,
-            color: Colors.white,
-            thickness: 5,
-          ),
-          Container(
-            child: Text(
-              note.subtitle,
-              style: TextStyle(
-                fontSize: 18,
-              ),
+            const SizedBox(
+              height: 10,
             ),
-          )
-        ],
+            const Divider(
+              indent: 20,
+              endIndent: 20,
+              height: 18,
+              color: Colors.white,
+              thickness: 5,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                note.subtitle,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
